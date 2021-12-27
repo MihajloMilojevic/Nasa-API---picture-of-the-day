@@ -133,10 +133,10 @@ async function PromenaSlika(URL) {
         {
             const data = await res.json();
             const slika = document.getElementById("slika")
-            slika.src = data.hdurl;
+            console.log(data);
+            slika.src = (data.hdurl != undefined) ? data.hdurl : data.url;
             const img = new Image();
-            img.src = data.hdurl;
-            
+            img.src = (data.hdurl != undefined) ? data.hdurl : data.url;
         }
         else
             throw new Error("Greska pri uzimanju podataka");
