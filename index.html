@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="sr-RS">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="style.css">
+    <title></title>
+</head>
+
+<body>
+    <div class="container">
+        Dan:
+        <select id="dan"></select>
+        Mesec:
+        <select id="mesec" onchange="MesecPromena()"></select>
+        Godina:
+        <select id="godina" onchange="GodinaPromena()"></select>
+        <br>
+        <button onclick="SlikaPromena()">Promeni</button>
+        <button onclick="Danas()">Danas</button>
+    </div>
+    <div class="img-container">
+        <img src="./nasa.png" alt="slika" id="slika">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
