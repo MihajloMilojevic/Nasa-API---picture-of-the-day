@@ -13,7 +13,7 @@ const meseci = [
 const dani = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; 
 
 document.addEventListener("DOMContentLoaded", () => {
-    PromenaSlika(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`);
+    PromenaSlika(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&&thumbs=true`);
         
     const danas = new Date();
     if (PrestupnaGodina(danas.getFullYear()))
@@ -98,7 +98,7 @@ function Danas()
 
 function SlikaPromena() {
     var q = `${godina.value}-${mesec.value}-${dan.value}`;
-    const URL = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&date=${q}`;
+    const URL = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&date=${q}&thumbs=true`;
     PromenaSlika(URL);
 }
 
@@ -133,10 +133,11 @@ async function PromenaSlika(URL) {
         {
             const data = await res.json();
             const slika = document.getElementById("slika")
-            console.log(data);
-            slika.src = (data.hdurl != undefined) ? data.hdurl : data.url;
+            const src = data.media_type === "video" ? data.thumbnail_url : data.hdurl || data.url;
+            //console.log(data);
+            slika.src = src;
             const img = new Image();
-            img.src = (data.hdurl != undefined) ? data.hdurl : data.url;
+            img.src = src;
         }
         else
             throw new Error("Greska pri uzimanju podataka");
