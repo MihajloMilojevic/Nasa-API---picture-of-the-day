@@ -9,8 +9,6 @@ body {
 	background-color: #333333;
 	height: 100vh;
 	color: white;
-	padding-top: 20px;
-	padding-bottom: 20px;
 	display: flex;
 	flex-flow: column;
 }
@@ -23,26 +21,56 @@ img {
 }
 .img-container {
 	width: 80%;
-	height: 70%;
+	height: 100%;
 	margin: auto;
 	padding: 0;
-	text-align: center;
-}
-.container {
-	width: 80%;
-	/*border: white 1px solid;*/
-	margin: auto;
-	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 @media screen and (max-width: 768px) {
-	.container {
-		width: 100%;
-	}
 	.img-container {
 		width: calc(100% - 40px);
 		margin-left: 20px;
 		margin-right: 20px;
 	}
+}
+
+.modal {
+	margin: 0;
+	position: absolute;
+	background-color: rgba(0, 0, 0 , .5);
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-show {
+	opacity: 1;
+}
+
+.modal-body {
+	width: 50%;
+	height: 50%;
+	background-color: #d8d8d8;
+	color: black;
+	border-radius: 10px;
+	transform: translateY(-10%);
+	transition: transform 0.5s ease-in-out;
+	box-shadow: 0 0 50px rgb(199, 199, 199) ; 
+}
+
+.modal-show .modal-body {
+	transform: translateY(0);
+}
+
+@keyframes modal-show {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
 }
 
 button, select{
