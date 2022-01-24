@@ -1,7 +1,8 @@
 
 const API_KEY = "A4UdlhlqMgspVyJRdjPjirtXGJl3XTv1PzOayBZ0";
 
-document.getElementById("img").onresize = setImageDimensions;
+//document.getElementById("img").onresize = setImageDimensions;
+
 
 const daysInMonths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 const months =  ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -12,17 +13,15 @@ const yearSelect = document.querySelector("#year");
 const changeButton = document.querySelector("#change");
 const todayButton = document.querySelector("#today");
 
-const imgTitle = document.querySelector("#title");
-const imgExplanation = document.querySelector("#explanation");
-
 function setImageDimensions() // seting dimensions of an the image so that the ratio of width and height stay constant
 {   
     const slika = document.getElementById("slika");
     const img = new Image();
     img.src = slika.src;
-    const ratio = img.width / img.height;
+    const ratio = `${img.width} / ${img.height}`;
     const imgLandscape = (img.width > img.height);
-    if(imgLandscape)
+    //slika.style.aspectRatio = ratio;
+    /*if(imgLandscape)
     {
         slika.style.width = "100%";
         slika.style.height = `calc(${slika.style.width} / ${ratio})`;
@@ -31,7 +30,7 @@ function setImageDimensions() // seting dimensions of an the image so that the r
     {
         slika.style.height = "100%";
         slika.style.width = `calc(${slika.style.height} / ${ratio})`;
-    }
+    }*/
 }
 
 async function APICall(URL) { // makes an API request and changes the image
@@ -43,10 +42,7 @@ async function APICall(URL) { // makes an API request and changes the image
         const data = await res.json();
         const image = document.getElementById("img")
         const src = data.media_type === "video" ? data.thumbnail_url : data.hdurl || data.url;
-        console.log(data);
         image.src = src;
-        imgTitle.innerText = data.title;
-        imgExplanation.innerText = data.explanation;
     }
     catch(error)
     {
@@ -67,11 +63,21 @@ yearSelect.addEventListener("change", () => {
 monthSelect.addEventListener("change", () => {
     setDays(daySelect.value, monthSelect.value)
 })
-changeButton.addEventListener("click", change)
+changeButton.addEventListener("click", () => {
+    change();
+    toggle();
+    document.images[0].focus();
+})
+
 todayButton.addEventListener("click", () => {
     setToday();
     change();
 })
+document.getElementById("toggle").addEventListener("click", toggle);
+
+function toggle() {
+    document.getElementById("date").classList.toggle("date-active");
+}
 
 function change()
 {
