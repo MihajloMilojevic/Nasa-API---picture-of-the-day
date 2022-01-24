@@ -66,7 +66,6 @@ monthSelect.addEventListener("change", () => {
 changeButton.addEventListener("click", () => {
     change();
     toggle();
-    document.images[0].focus();
 })
 
 todayButton.addEventListener("click", () => {
@@ -76,7 +75,15 @@ todayButton.addEventListener("click", () => {
 document.getElementById("toggle").addEventListener("click", toggle);
 
 function toggle() {
-    document.getElementById("date").classList.toggle("date-active");
+    const date = document.getElementById("date");
+    if(date.classList.contains("date-active"))
+    {
+        date.classList.remove("date-active");
+        document.images[0].focus();
+    }
+    else
+        date.classList.add("date-active");
+    
 }
 
 function change()
