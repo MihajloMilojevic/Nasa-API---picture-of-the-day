@@ -10,22 +10,31 @@
 </head>
 
 <body>
-    <!--<div class="container">
-        Dan:
-        <select id="dan"></select>
-        Mesec:
-        <select id="mesec" onchange="MesecPromena()"></select>
-        Godina:
-        <select id="godina" onchange="GodinaPromena()"></select>
-        <br>
-        <button onclick="SlikaPromena()">Promeni</button>
-        <button onclick="Danas()">Danas</button>
-    </div>-->
-    <div class="img-container">
-        <img src="./nasa.png" alt="Image" id="img">
+    <div class="hero">
+        <div class="nav">
+            <h1>NASA PICTURE OF THE DAY</h1>
+            <div class="date">
+                <div class="select">
+                    <select id="day"></select>
+                    <select id="month"></select>
+                    <select id="year"></select>
+                </div>
+                <div class="buttons">
+                    <button id="today">TODAY</button>
+                    <button id="change">CHANGE</button>
+                </div>
+            </div>
+        </div>
+        <div class="img-container">
+            <img src="./nasa.png" alt="Image" id="img">
+        </div>
+    </div>
+    <div class="img-desc">
+        <h2 id="title"></h2>
+        <p id="explanation"></p>
     </div>
 
-    <script src="script.js" type="module" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
